@@ -5,28 +5,28 @@
       <a-form-model ref="form" :model="model" :rules="validatorRules" slot="detail">
         <a-row>
           <a-col :span="24" >
-            <a-form-model-item label="用户id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="actorId">
-              <a-input v-model="model.actorId" placeholder="请输入用户id" ></a-input>
+            <a-form-model-item label="标签对象id" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="actorId">
+              <a-input v-model="model.actorId" placeholder="请输入标签对象id" ></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="24" >
-            <a-form-model-item label="用户姓名" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="actorName">
-              <a-input v-model="model.actorName" placeholder="请输入用户姓名" ></a-input>
+            <a-form-model-item label="标签对象姓名" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="actorName">
+              <a-input v-model="model.actorName" placeholder="请输入标签对象姓名" ></a-input>
             </a-form-model-item>
           </a-col>
           <a-col :span="24" >
-            <a-form-model-item label="用户类别标签" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="actorClass">
-              <a-input v-model="model.actorClass" placeholder="请输入用户类别标签" ></a-input>
+            <a-form-model-item label="标签对象类别标签" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="actorClass">
+              <j-dict-select-tag type="radio" v-model="model.actorClass" dictCode="bot_lable_class" placeholder="请选择标签对象类别标签" />
             </a-form-model-item>
           </a-col>
           <a-col :span="24" >
-            <a-form-model-item label="用户标签程度" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="actorDifficult">
-              <a-input v-model="model.actorDifficult" placeholder="请输入用户标签程度" ></a-input>
+            <a-form-model-item label="标签对象标签是否难打" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="actorDifficult">
+              <j-dict-select-tag type="radio" v-model="model.actorDifficult" dictCode="bot_lable_difficulty" placeholder="请选择标签对象标签是否难打" />
             </a-form-model-item>
           </a-col>
           <a-col :span="24" >
-            <a-form-model-item label="是否是机器人" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="actorBot">
-              <a-input v-model="model.actorBot" placeholder="请输入是否是机器人" ></a-input>
+            <a-form-model-item label="标签对象是否是机器人" :labelCol="labelCol" :wrapperCol="wrapperCol" prop="actorBot">
+              <j-dict-select-tag type="radio" v-model="model.actorBot" dictCode="bot_lable_bot" placeholder="请选择标签对象是否是机器人" />
             </a-form-model-item>
           </a-col>
         </a-row>
@@ -110,7 +110,9 @@
             {
               title: '是否是机器人',
               key: 'botLableBot',
-               type: JVXETypes.input,
+              type: JVXETypes.select,
+              options:[],
+              dictCode:"bot_lable_bot",
               width:"200px",
               placeholder: '请输入${title}',
               defaultValue:'',
@@ -118,7 +120,9 @@
             {
               title: '机器人类别',
               key: 'botLableClass',
-               type: JVXETypes.input,
+              type: JVXETypes.select,
+              options:[],
+              dictCode:"bot_lable_class",
               width:"200px",
               placeholder: '请输入${title}',
               defaultValue:'',
@@ -126,13 +130,15 @@
             {
               title: '是否难打',
               key: 'botLableDifficult',
-               type: JVXETypes.input,
+              type: JVXETypes.select,
+              options:[],
+              dictCode:"bot_lable_difficulty",
               width:"200px",
               placeholder: '请输入${title}',
               defaultValue:'',
             },
             {
-              title: 'yonghuid',
+              title: '标签对象',
               key: 'actorId',
                type: JVXETypes.input,
               width:"200px",

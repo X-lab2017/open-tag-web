@@ -8,7 +8,7 @@
       </a-form>
     </div>
     <!-- 查询区域-END -->
-    
+
     <!-- 操作按钮区域 -->
     <div class="table-operator">
       <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
@@ -95,101 +95,100 @@
 
 <script>
 
-  import { JeecgListMixin } from '@/mixins/JeecgListMixin'
-  import DatasourceBotModal from './modules/DatasourceBotModal'
-  import {filterMultiDictText} from '@/components/dict/JDictSelectUtil'
-  import '@/assets/less/TableExpand.less'
+import { JeecgListMixin } from '@/mixins/JeecgListMixin'
+import DatasourceBotModal from './modules/DatasourceBotModal'
+import '@/assets/less/TableExpand.less'
 
-  export default {
-    name: "DatasourceBotList",
-    mixins:[JeecgListMixin],
-    components: {
-      DatasourceBotModal
-    },
-    data () {
-      return {
-        description: '开源机器人标签表管理页面',
-        // 表头
-        columns: [
-          {
-            title: '#',
-            dataIndex: '',
-            key:'rowIndex',
-            width:60,
-            align:"center",
-            customRender:function (t,r,index) {
-              return parseInt(index)+1;
-            }
-          },
-          {
-            title:'标签对象id',
-            align:"center",
-            dataIndex: 'actorId'
-          },
-          {
-            title:'标签对象姓名',
-            align:"center",
-            dataIndex: 'actorName'
-          },
-          {
-            title:'标签对象类别标签',
-            align:"center",
-            dataIndex: 'actorClass_dictText'
-          },
-          {
-            title:'标签对象标签是否难打',
-            align:"center",
-            dataIndex: 'actorDifficult_dictText'
-          },
-          {
-            title:'标签对象是否是机器人',
-            align:"center",
-            dataIndex: 'actorBot_dictText'
-          },
-          {
-            title: '操作',
-            dataIndex: 'action',
-            align:"center",
-            fixed:"right",
-            width:147,
-            scopedSlots: { customRender: 'action' },
+export default {
+  name: "DatasourceBotList",
+  mixins:[JeecgListMixin],
+  components: {
+    DatasourceBotModal
+  },
+  data () {
+    return {
+      description: '开源机器人标签表管理页面',
+      // 表头
+      columns: [
+        {
+          title: '#',
+          dataIndex: '',
+          key:'rowIndex',
+          width:60,
+          align:"center",
+          customRender:function (t,r,index) {
+            return parseInt(index)+1;
           }
-        ],
-        url: {
-          list: "/datasource/datasourceBot/list",
-          delete: "/datasource/datasourceBot/delete",
-          deleteBatch: "/datasource/datasourceBot/deleteBatch",
-          exportXlsUrl: "/datasource/datasourceBot/exportXls",
-          importExcelUrl: "datasource/datasourceBot/importExcel",
-          
         },
-        dictOptions:{},
-        superFieldList:[],
-      }
-    },
-    created() {
-      this.getSuperFieldList();
-    },
-    computed: {
-      importExcelUrl: function(){
-        return `${window._CONFIG['domianURL']}/${this.url.importExcelUrl}`;
-      }
-    },
-    methods: {
-      initDictConfig(){
+        {
+          title:'用户id',
+          align:"center",
+          dataIndex: 'actorId'
+        },
+        {
+          title:'用户姓名',
+          align:"center",
+          dataIndex: 'actorName'
+        },
+        {
+          title:'用户类别标签',
+          align:"center",
+          dataIndex: 'actorClass'
+        },
+        {
+          title:'用户标签程度',
+          align:"center",
+          dataIndex: 'actorDifficult'
+        },
+        {
+          title:'是否是机器人',
+          align:"center",
+          dataIndex: 'actorBot'
+        },
+        {
+          title: '操作',
+          dataIndex: 'action',
+          align:"center",
+          fixed:"right",
+          width:147,
+          scopedSlots: { customRender: 'action' },
+        }
+      ],
+      url: {
+        list: "/datasource/datasourceBot/list",
+        delete: "/datasource/datasourceBot/delete",
+        deleteBatch: "/datasource/datasourceBot/deleteBatch",
+        exportXlsUrl: "/datasource/datasourceBot/exportXls",
+        importExcelUrl: "datasource/datasourceBot/importExcel",
+
       },
-      getSuperFieldList(){
-        let fieldList=[];
-        fieldList.push({type:'string',value:'actorId',text:'标签对象id',dictCode:''})
-        fieldList.push({type:'string',value:'actorName',text:'标签对象姓名',dictCode:''})
-        fieldList.push({type:'string',value:'actorClass',text:'标签对象类别标签',dictCode:'bot_lable_class'})
-        fieldList.push({type:'string',value:'actorDifficult',text:'标签对象标签是否难打',dictCode:'bot_lable_difficulty'})
-        fieldList.push({type:'string',value:'actorBot',text:'标签对象是否是机器人',dictCode:'bot_lable_bot'})
-        this.superFieldList = fieldList
-      }
+      dictOptions:{},
+      superFieldList:[],
+    }
+  },
+  created() {
+    this.getSuperFieldList();
+  },
+  computed: {
+    importExcelUrl: function(){
+      return `${window._CONFIG['domianURL']}/${this.url.importExcelUrl}`;
+    }
+  },
+  methods: {
+    initDictConfig(){
+    },
+    getSuperFieldList(){
+      let fieldList=[];
+      fieldList.push({type:'string',value:'actorId',text:'用户id',dictCode:''})
+      fieldList.push({type:'string',value:'actorName',text:'用户姓名',dictCode:''})
+      fieldList.push({type:'string',value:'actorClass',text:'用户类别标签',dictCode:''})
+      fieldList.push({type:'string',value:'actorDifficult',text:'用户标签程度',dictCode:''})
+      fieldList.push({type:'string',value:'actorBot',text:'是否是机器人',dictCode:''})
+      this.superFieldList = fieldList
     }
   }
+}
 </script>
 <style scoped>
-  @import '~@assets/less/common.less';
+@import '~@assets/less/common.less';
 </style>
